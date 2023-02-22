@@ -1,0 +1,48 @@
+ input,select{
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    border: 0px;
+    border-bottom: 2px solid lightblue;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: rgba(240, 248, 255, 0);
+    color: aliceblue;
+}
+input::placeholder{
+  color: rgba(240, 248, 255, 0.822);
+  font-size: 20px;
+}
+
+select option{
+  color: black;
+  transition: all;
+  transition-duration: 500ms;
+}
+label{
+  color: aliceblue;
+  margin-left: 100px;
+}
+input[type='file']{
+  border: 0;
+  color: rgba(255, 255, 255, 0);
+}
+.add{
+  width: 100%;
+  height: 100%;
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/801/197/303/mass-effect-simple-minimalism-normandy-sr-2-reapers-black-background-wallpaper-preview.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 25px;
+}
+.ma{
+  background-color: rgba(137, 43, 226, 0.171);
+  margin: 0px 600px;
+}
+.ma:hover{
+  background-color: rgba(137, 43, 226, 0.284);
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out;
+  border-radius: 20px;
+}

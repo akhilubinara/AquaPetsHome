@@ -1,0 +1,12 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.col iframe{
+    border-radius: 30px;
+    width: 350px;
+    height: 250px;
+}
+.row{
+    margin:10px 100px;
+}

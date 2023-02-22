@@ -1,0 +1,28 @@
+.navbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    color: aliceblue;
+    height: 70px;
+}
+.navbar a{
+    color: aliceblue;
+}
+.navbar a:hover{
+    color: rgb(7, 7, 7) ;
+}
+.navbar li input{
+    border-radius: 20px;
+    height: 35px;
+    width: 50%;
+}
+
+.navbar #usercont,#list{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.search{
+    border-radius: 20px;
+    margin-left: 0;
+    height: 40px;
+}

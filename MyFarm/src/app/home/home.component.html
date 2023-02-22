@@ -1,0 +1,80 @@
+
+<app-header></app-header>
+<app-slidder></app-slidder>
+<!--Main Navigation-->
+<div class="d-flex">
+  <header class="container  p-5 m-0"   >
+    <!-- Sidebar -->
+    <nav  class=" container collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+        <div id="sidebarMenu" class="list-group list-group-flush mx-3 mt-4">
+            <div id="list-group-item"  class="list-group-item list-group-item-action py-2 ripple d-flex bg-dark rounded">
+             <div><h6 class="m-0 p-0 ms-4 " style="font-size: 12px;">Welcome</h6>
+              <a routerLink="/" style="text-decoration: none;color: aliceblue;"><span class="ms-4" style="font-weight: 700; font-size: 17px;">Aqua-Pets-Home</span></a></div> 
+            </div>
+          <a routerLink="/" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+            <i class="fa-sharp fa-solid fa-house ms-3"></i>&nbsp;&nbsp;&nbsp;<span>Home</span>
+          </a>
+          <button (click)="search(searchkey='Fish')" value="Fish" class="list-group-item list-group-item-action py-2 ripple"><i 
+            class="fa-sharp fa-solid fa-fish-fins ms-3 me-3"></i><span>Fishes</span>
+          </button>
+          <button (click)="search(searchkey='Plants')" class="list-group-item list-group-item-action py-2 ripple" value="Plants"><i
+            class="fa-sharp fa-solid fa-seedling ms-3 me-3"></i><span>Plants</span></button>
+            <button (click)="search(searchkey='Other')" class="list-group-item list-group-item-action py-2 ripple" value="other"><i 
+              class="fa-sharp fa-solid fa-feather-pointed ms-3 me-3"></i><span>Other Products</span></button>
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+  <div id="line"></div>
+      <div class="row text-center d-flex justify-content-center ">
+         
+  
+              <div *ngFor="let product of allproduct | filter : searchterm:'pname' " class="card" style="width: 18rem;">
+                
+                  <img [src]="product.image" class="card-img-top m-auto" alt="Sunset Over the Sea"/>
+  
+  
+                <div class="card-body">
+                  <p class="card-text" style="font-weight: 700;">{{product.pname}}</p>
+                  <p class="card-text">{{product.age}}</p>
+                  <hr>
+                  <p>{{product.description}}</p>
+                  <hr>
+                  <p style="font-size: 20px; font-weight: 700;" class="card-text">Rs. {{product.price}}/-</p>
+                  <hr>
+                  <div *ngIf="username!='Admin'">
+                    <p><button type="button" id="buy" (click)="buynow(product)" class="btn btn-warning me-3 pt-1 pb-1">Buy Now</button>
+                      <button id="wish" (click)="wishlist(product)" class="btn btn-outline-danger"><i class="fa fa-heart" href="#"></i></button></p>
+                  </div>
+                  
+                </div>
+  
+              <div *ngIf="username=='Admin'">
+                <!-- <button id="edit" (click)="Edit(product)" class="btn btn-outline-info w-25 m-2"><i class="fa fa-edit" href="#"></i></button> -->
+                <button id="delete" (click)="Delete(product)" class="btn btn-outline-danger w-25 m-2"><i class="fa fa-trash" href="#"></i></button>
+              </div>
+              </div>
+  
+      </div>
+  
+
+  
+</div>
+
+<div class="d-flex" style="margin-left: 350px; height: 200px;">
+  <div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4669.425591506576!2d76.38370370226623!3d10.220935547068073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0807443dd24b11%3A0x4ea751017bb54bb8!2sAK%20Aquatics%20(guppy%20farm)!5e0!3m2!1sen!2sin!4v1677047581103!5m2!1sen!2sin" 
+    width="600" height="337px" style="border-radius: 10px;  border:1px solid rgb(233, 229, 229); margin-bottom: 200px; margin-top: 30px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <div>
+    <form id="ask">
+      <h4>Ask me.. ?</h4>
+      <input type="text" placeholder="Enter E-mail">
+      <input type="text" placeholder="Enter Mobile Number">
+      <input type="textarea" width="300px" height="100px" placeholder="Enter message"><br>
+      <button class="btn btn-warning ps-3 pe-3 pb-2 pt-2 mt-3">Send</button>
+    </form>
+  </div>
+</div>

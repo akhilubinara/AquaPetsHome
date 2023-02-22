@@ -1,0 +1,91 @@
+ <app-header></app-header>
+
+<!--Main Navigation-->
+<header class="container"   >
+    <!-- Sidebar -->
+    <nav  class=" container collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+        <div id="sidebarMenu" class="list-group list-group-flush mx-3 mt-4">
+            <div  class="list-group-item list-group-item-action py-2 ripple d-flex">
+                <div><img class="me-3" src="https://t4.ftcdn.net/jpg/04/83/90/95/360_F_483909569_OI4LKNeFgHwvvVju60fejLd9gj43dIcd.jpg" width="40px" alt=""></div>
+               <div><h6 class="m-0 p-0" style="font-size: 12px;">Hello</h6><span class="m-0" style="font-weight: 700; font-size: 17px;">{{userData.firstname+' '+userData.lastname}}</span></div> 
+            </div>
+          <button (click)="A()" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+            <i class="fa-sharp fa-solid fa-user me-2 ms-3"></i>&nbsp;&nbsp;&nbsp;<span>Profile Information</span>
+          </button>
+          <button (click)="B()" class="list-group-item list-group-item-action py-2 ripple"><i 
+            class="fa-sharp fa-solid fa-location-dot me-3 ms-3"></i><span>Manage Address</span>
+          </button>
+          <button (click)="C()" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fa fa-lock fa-fw me-3 ms-3"></i><span>Password</span></button>
+            <button (click)="E()" class="list-group-item list-group-item-action py-2 ripple"><i 
+                class="fa-sharp fa-solid fa-heart me-3 ms-3"></i><span>Wishlist</span></button>
+                <button (click)="F()" class="list-group-item list-group-item-action py-2 ripple"><i
+                    class="fa-sharp fa-solid fa-cart-shopping me-3 ms-3"></i><span>Cart</span></button>
+          <button (click)="D()" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fa-sharp fa-solid fa-truck me-3 ms-3"></i><span>MyOrders</span></button>
+          <button (click)="H()"  class="list-group-item list-group-item-action py-2 ripple"><i
+             class="fa-sharp fa-solid fa-list-check me-3 ms-3"></i><span>Manage Account</span></button>
+              <button (click)="G()" class="list-group-item list-group-item-action py-2 ripple active mt-5"><i
+                class="fa-sharp fa-solid fa-power-off me-3 ms-5"></i><span class="ms-0">Logout</span></button>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+
+            <div id="right" *ngIf="pflag=='personalinfo'" style="margin:130px 200px 0 400px; box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%); padding: 30px;">
+                <div class="d-flex">
+                    <img style="width: 200px;" class=" mb-5 mt-5" src="https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png" alt="">
+                    <h2 style="margin-top: 150px; margin-left: 50px;">{{userData.firstname+' '+userData.lastname}}</h2>                    
+                </div>
+                <div><input type="text" [value]=" userData.firstname">
+                <input class="ms-3" type="text" [value]="userData.lastname"></div>
+                <div>Mobile Number : <br> <input type="text" [value]="userData.mobno"></div>
+                <div>Email-id : <br> <input type="text" placeholder="Enter email"><button class="ms-4 btn btn-success">Save</button></div>
+            </div>
+
+            <!-- address -->
+            <div id="#right" *ngIf="pflag=='address'" style="margin:130px 200px 0 400px; box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%); padding: 30px;">
+                <div class="d-flex">
+                    <img style="width: 200px;" class=" mb-5 mt-5" src="https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png" alt="">
+                    <h2 style="margin-top: 150px; margin-left: 50px;">{{userData.firstname+' '+userData.lastname}}</h2>                    
+                </div>
+                <div>
+                    <button class="btn btn-success" (click)="AddAddress()">Add Address</button>
+                    <div *ngIf="address==true" class="p-5">
+                      <input type="textarea" class="w-75 me-3 pt-3"><button class="btn btn-outline-success pb-1">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- password -->
+            <div id="right" *ngIf="pflag=='password'" style="margin:130px 200px 0 400px; box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%); padding: 30px;">
+                <div class="d-flex">
+                    <img style="width: 200px;" class=" mb-5 mt-5" src="https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png" alt="">
+                    <h2 style="margin-top: 150px; margin-left: 50px;">{{userData.firstname+' '+userData.lastname}}</h2>                    
+                </div>
+                <form [formGroup]="updatepassword">
+                    <input type="text" formControlName="currentpassword" placeholder="Enter Current Password"><br>
+                    <input type="text" formControlName="newpass" placeholder="Enter New Password"><br>
+                    <input type="text" formControlName="repeatnewpass" placeholder="Repeat new Password"><br>
+                    <button (click)="updatePassword()" class="btn btn-success">Save</button>
+                </form>
+            </div>
+
+<div id="right" *ngIf="pflag=='wishlist'">
+    <app-wishlist> </app-wishlist>
+</div>
+
+
+<div id="right" *ngIf="pflag=='cart'">
+<app-cart></app-cart>
+</div>
+
+<div id="right" *ngIf="pflag=='myorder'">
+  <app-myorders></app-myorders>
+</div>
+
+<div id="right" *ngIf="pflag=='manageaccount'">
+  <div (click)="DeleteAccount()" class="btn btn-danger">Delete Account</div><br><br>
+</div>

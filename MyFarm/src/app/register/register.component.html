@@ -1,0 +1,77 @@
+<app-header></app-header>
+
+<!-- Section: Design Block -->
+<section class="">
+    <!-- Jumbotron -->
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight">
+              AK AQuatics <br />
+              <span class="text-primary"><p style="font-size: 40px;">For your passion and business</p></span>
+            </h1>
+            <p style="color: hsl(217, 10%, 50.8%)">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+              quibusdam tempora at cupiditate quis eum maiores libero
+              veritatis? Dicta facilis sint aliquid ipsum atque?
+            </p>
+          </div>
+  
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card">
+              <div class="card-body py-5 px-md-5">
+                <form [formGroup]="registerForm">
+                  <h2>Create an account...</h2><br>
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" formControlName="fname" placeholder="First Name" class="form-control" />
+                        <!-- <label class="form-label" for="form3Example1">First name</label> -->
+                      </div>
+                      <div *ngIf="this.registerForm.get('fname')?.errors && this.registerForm.get('fname')?.touched" style="color: red;">Invalid name Entered</div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" formControlName="lname" placeholder="Last Name" class="form-control" />
+                        <!-- <label class="form-label" for="form3Example2">Last name</label> -->
+                      </div>
+                      <div *ngIf="this.registerForm.get('lname')?.errors && this.registerForm.get('lname')?.touched" style="color: red;">Invalid name Entered</div>
+                    </div>
+                  </div>
+  
+                  <!-- UserID input -->
+                  <div class="form-outline mb-4">
+                    <input type="text" placeholder="UserID" formControlName="uid" class="form-control" />
+                    <!-- <label class="form-label" for="form3Example3">UserID</label> -->
+                  </div>
+                  <div *ngIf="this.registerForm.get('uid')?.errors && this.registerForm.get('uid')?.touched" style="color: red;"> Invalid User ID</div>
+                  <!-- Mobile number -->
+                  <div class="form-outline mb-4">
+                    <input type="text" placeholder="Mobile Number" formControlName="mobno" class="form-control" />
+                    <!-- <label class="form-label" for="form3Example3">UserID</label> -->
+                  </div>
+                  <div *ngIf="this.registerForm.get('mobno')?.errors && this.registerForm.get('mobno')?.touched" style="color: red;"> Invalid Mobile Number</div>
+                  <!-- Password input -->
+                  <div class="form-outline mb-4">
+                    <input type="password" placeholder="Password" formControlName="pswd" id="pswd" class="form-control" />
+                    <!-- <label class="form-label" for="form3Example4">Password</label> -->
+                  </div>
+                  <div *ngIf="this.registerForm.get('pswd')?.errors && this.registerForm.get('pswd')?.touched" style="color: red;">Invalid Password. Enter atleast 6 characters</div>
+                  <!-- Submit button -->
+                  <button class="btn btn-primary btn-block mb-4" (click)="Register()">
+                    Sign up
+                  </button>
+                  <p>Already have an account? <a href="/login">Login</a></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->

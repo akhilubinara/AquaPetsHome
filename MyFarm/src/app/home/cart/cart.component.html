@@ -1,0 +1,79 @@
+
+<!-- ---empty cart--- -->
+<div *ngIf="msg==true" class="cla" >
+    <div class="container" >
+        <div class="row">
+            <div class="col text-center">
+                <img id="emptyimg" src="https://www.animatedimages.org/data/media/157/animated-fishing-image-0138.gif" alt="">
+                <h3 class="mt-3">Your cart is empty </h3>
+                <a class="btn btn-primary" routerLink="/">Shop Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- cart with content -->
+<div *ngIf="msg!=true" class="container text-center">
+    <div class="row">
+        <div *ngFor="let product of cart" class="col pe-2 d-flex ">
+            <table class="table border border-dark m-4">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-left">
+                    <!-- <tr *ngFor="let product of cartitems" > -->
+                        <tr>
+                        <td>{{product.pname}}</td>
+                        <td><img [src]="product.image" width="100px" height="100px" alt=""></td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.price}}</td>
+                        <td><button (click)="DeleteCart(product._id)" id="b1" ><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+          </div>
+            <div style="float: right;">
+                <a routerLink="/home" class="btn btn-warning">View More</a> &nbsp; 
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Check out</button> &nbsp;
+                <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Check Out Page</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2>Delivery Address</h2>
+          <form action="" class="form-control">
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Address/House No.">
+            <input type="text" placeholder="pincode">
+            <input type="text" placeholder="State">
+            <input type="text" placeholder="Country">
+            <input type="text" placeholder="E-mail">
+            <input type="text" placeholder="Contact Number">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="order()" class="btn btn-primary">Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                <div class="mt-3"><h3><b>Grand Total : Rs.{{total}}/- </b></h3></div>
+            </div>
+        
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+    <div class="container px-4 px-lg-5">
+        <div>
+            <a class="navbar-brand mt-0"routerLink="/home" style="color: aliceblue;"> 
+                <i class="fa-sharp fa-solid fa-house me-3"></i>Aqua-Pets-Home</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a style="color: aliceblue;" class="nav-link active" aria-current="page"href="https://www.youtube.com/channel/UC3aVchGfsvf_ves2FSUEFCA">&nbsp;&nbsp;Youtube</a></li>
+                <li class="nav-item"><a style="color: aliceblue;" class="nav-link" routerLink="/videos">Videos</a></li>
+                <li class="nav-item dropdown">
+                    <a style="color: aliceblue;" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="list">
+                        <li><a class="dropdown-item" href="/home">All Products</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" (click)="getfishes()" href="">Fishes</a></li>
+                        <li><a class="dropdown-item" href="#!">Plants</a></li>
+                        <li><a class="dropdown-item" href="#!">Other Products</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <input (keyup)="search($event)" class="search ps-3 me-5 mt-1 w-50" type="text" placeholder="Search Product">
+
+            <form class="d-flex">
+                <div class="d-flex" *ngIf="username=='Admin'">
+                    <a style="color: aliceblue;" class="nav-link dropdown-toggle m-2 me-3" id="accountDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i>&nbsp; {{username}}</a>
+                    <ul id="usercont" style="margin-left: 1300px;" class="dropdown-menu" aria-labelledby="accountDropdown">
+                        <li><a (click)="Logout()" class="dropdown-item" routerLink="/myprofile" >Logout</a></li>
+                    </ul>
+                </div>
+                <div *ngIf="username!='Login' && username!='Admin'">
+                    <a style="color: aliceblue;" class="nav-link dropdown-toggle m-2 me-3" id="accountDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i>&nbsp; {{username}}</a>
+                    <ul id="usercont" style="margin-left: 1300px;" class="dropdown-menu" aria-labelledby="accountDropdown">
+                        <li><a class="dropdown-item" routerLink="/myprofile" >My Profile</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" routerLink="/wishlist">Wishlist</a></li>
+                        <li><a class="dropdown-item" routerLink="/myorders">My Orders</a></li>
+                        <li><a class="dropdown-item" (click)="Logout()" >Logout</a></li>
+                    </ul>
+                </div>
+                <div *ngIf="username=='Login'">
+                    <button style="color: aliceblue;" class="btn me-3" (click)="login()"><i class="fa-sharp fa-solid fa-user"></i>&nbsp; {{username}}</button>
+                </div>
+                
+                <button style="color: aliceblue;" (click)="cart()" class="btn btn-outline-light" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">{{cartcount}}</span> -->
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>

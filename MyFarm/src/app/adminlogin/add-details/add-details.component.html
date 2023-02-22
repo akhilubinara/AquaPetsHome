@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+
+<form [formGroup]="addform">
+    <div class="add"><br><br>
+        <div class="ma">
+            <div style="text-align: center;margin: 50px 0; padding: 30px 90px;border-radius: 10px;">
+                <div style="text-align: center; color: rgb(5, 126, 231); margin-bottom: 30px;"><h2>Add Details</h2></div>
+        
+               <div><input type="text" placeholder="item Name" formControlName="fname"></div>
+               <div *ngIf="this.addform.get('fname')?.errors && this.addform.get('fname')?.touched" style="color: red; margin: 0 60px;">Invalid Name.</div>  
+               <div>
+                <select style="color: rgba(240, 248, 255, 0.836); font-size: 17px; padding-bottom: 5px;" name="Type" formControlName="tname">
+                    <option value="">Select Item Type</option>
+                    <option value="Fish">Fish</option>
+                    <option value="Plants">Plants</option>
+                    <option value="Other">Other Products</option>
+                </select>
+               </div>
+               <div *ngIf="this.addform.get('tname')?.errors && this.addform.get('tname')?.touched" style="color: red; margin: 0 60px;">Invalid Type.</div>  
+               
+               <div><input id="age" type="text" placeholder="Age" formControlName="age"></div>
+               <div *ngIf="this.addform.get('age')?.errors && this.addform.get('age')?.touched" style="color: red;margin: 0 60px;">Enter a valid age</div>
+        
+               <div><input type="text" placeholder="Description" formControlName="description"></div>
+               <div *ngIf="this.addform.get('description')?.errors && this.addform.get('description')?.touched" style="color: red;margin: 0 60px;">Enter a valid description</div>
+               <div>
+                <select style="color: rgba(240, 248, 255, 0.836); font-size: 17px; padding-bottom: 5px;" name="Quality" formControlName="quality">
+                    <option value="">Select Quality Type</option>
+                    <option value="High Quality">High Quality</option>
+                    <option value="Low Quality">Low Quality</option>
+                    <option value="Medium Quality">Medium Quality</option>
+                </select>
+               </div>
+               <div *ngIf="this.addform.get('quality')?.errors && this.addform.get('quality')?.touched" style="color: red; margin: 0 60px;">Please select a type</div>  
+               <div><input type="number" placeholder="Enter amount" formControlName="amt"></div>
+               <div *ngIf="this.addform.get('amt')?.errors && this.addform.get('amt')?.touched" style="color: red; margin: 0 60px;">Invalid Amount</div>  
+               
+               
+               <div>
+                <label class="image-upload-container btn btn-bwm">
+                   <input #imageInput type="file" style="border:0;" accept="image/*" formControlName="img" (change)="onFileSelect($event)">
+                </label>    
+                </div>
+               <div><button class="btn btn-primary w-25" (click)="submit()">Submit</button></div>
+                </div> 
+        </div>
+    </div>
+</form>
