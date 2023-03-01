@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MyprofileComponent } from 'src/app/myprofile/myprofile.component';
 import { DataService } from 'src/app/services/data.service';
 
 
@@ -9,10 +10,12 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class CartComponent {
  
-  msg:any;
+  msg=false;
   cart:any=[];
+  myAddress:any=[];
+  user:any
   total=0
-  constructor(private ds:DataService){}
+  constructor(private ds:DataService, private myprofile:MyprofileComponent){}
 
   ngOnInit():void{
     this.total = this.ds.gettotal();
@@ -24,28 +27,29 @@ export class CartComponent {
         this.total = this.cart.reduce((acc:any, product:any) => acc + product.price, 0);
           localStorage.setItem('total',JSON.stringify(this.total));
           console.log('Total is :'+this.total);
-        
-        // this.setTotal();
-        // this.getTotal();
-        if(this.cart.length==0){
-          this.msg=true
-        }
       },
       (data:any)=>{
         this.cart = data.error.message;
       }
     )
   }
-  // setTotal(){
-  //   this.total = this.cart.price.reduce((a:any,b:any)=>a+b)
-  //   localStorage.setItem('total',JSON.stringify(this.total));
-  // }
-  // getTotal(){
-  //   this.total = JSON.parse(localStorage.getItem('total') || '')
-  // }
-  
   order(){
-    
+
+  }
+  getAddress(){
+    this.ds.getAddress().subscribe(
+      (result:any)=>{
+        this.myAddress = result.address;
+        this.user = result.user 
+        console.log(this.myAddress);
+        console.log(this.user);
+        
+        
+      },
+      (result:any)=>{
+        alert(result.error.message);
+      }
+    )
   }
   DeleteCart(product_id:any){
     return this.ds.DeleteCart(product_id).subscribe(
@@ -55,5 +59,10 @@ export class CartComponent {
       (result:any)=>{
         alert(result.error.message)
       })
+  }
+  Checkout(){
+    this.myprofile.pflag = 'checkout';
+    console.log(this.myprofile.pflag);
+    
   }
 }

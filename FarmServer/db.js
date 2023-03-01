@@ -8,13 +8,16 @@ const User = mongoose.model('User',{
     lastname:String,
     mobno:Number,
     password: String,
+    address:[],
     wishlist:[],
     cart:[],
     order:[]
 });
 const Admin = mongoose.model('Admin',{
     id:String,
-    password:String
+    password:String,
+    orders:[],
+    message:[]
 })
 const Product = mongoose.model('Product',{
     pname:String,

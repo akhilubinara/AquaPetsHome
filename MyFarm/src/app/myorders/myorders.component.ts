@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MyprofileComponent } from '../myprofile/myprofile.component';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -8,8 +9,28 @@ import { DataService } from '../services/data.service';
 })
 export class MyordersComponent {
 
-  emsg=true;
+  emsg:any;
+
+  MyOrders:any=[];
+  userDetails:any=[];
+
+  ngOnInit():void{
+    this.getMyOrders();
+  }
 
 
-  constructor(private ds:DataService){}
+  getMyOrders(){
+   
+    this.userDetails = this.myprofile.userData;
+    this.MyOrders  = this.myprofile.userData.order;
+    
+    if(this.MyOrders){
+      this.emsg=true;
+    }else{
+      this.emsg=false
+    }
+    
+  }
+
+  constructor(private ds:DataService, private myprofile:MyprofileComponent){}
 }

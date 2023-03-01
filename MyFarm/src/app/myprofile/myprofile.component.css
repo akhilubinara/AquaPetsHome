@@ -49,11 +49,27 @@ body {
         margin-top:130px;
         margin-left: 400px;
         margin-right: 50px;
-        box-shadow:  2px 5px 0 rgb(0 0 0 / 5%), 0 2px 0px 0 rgb(0 0 0 / 5%);
+        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
         padding-left: 30px;
         height: auto;
     }
-
+    #address{
+        padding: 20px;
+    }
+    #address input{
+        margin: 20px;
+    }
+    .col{
+        margin: 20px;
+        padding: 15px;
+    }
+    .col p{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    #id{
+        border: 1px solid rgb(104, 101, 101);
+    }
 
 
     

@@ -11,10 +11,14 @@ import { DataService } from '../services/data.service';
 export class MyprofileComponent {
   pflag='personalinfo'
 
+  myAddress:any=[];
   address:any;
   msg:any;
   cart:any=[];
-
+  user:any;
+  orderis=false;
+  MyOrders:any=[];
+  emsg=false;
 
   updatepassword = this.fb.group({
     currentpassword:['',[Validators.required]],
@@ -22,8 +26,23 @@ export class MyprofileComponent {
     repeatnewpass:['',[Validators.required]]
   })
 
-  constructor(private ds:DataService, private router:Router, private fb:FormBuilder){
+  addaddressform = this.fb.group({
+    houseno:['',[Validators.required]],
+    postoffice:['',[Validators.required]],
+    place:['',[Validators.required]],
+    pin:['',[Validators.required]],
+    district:['',[Validators.required]],
+    state:['',[Validators.required]],
+    country:['',[Validators.required]]
+    
+  })
+  ngOnInit():void{
+    this.getAddress();
+    this.getMyOrders();
     this.getProfile();
+  }
+  constructor(private ds:DataService, private router:Router, private fb:FormBuilder){
+    
     console.log(this.uid);
   }
   username=this.ds.currentusername;
@@ -33,7 +52,8 @@ export class MyprofileComponent {
   getProfile(){
     return this.ds.getProfile().subscribe(
       (result:any)=>{
-      this.userData = result.userData
+      this.userData = result.userData;
+      console.log(this.userData);
       
     },
     (result:any)=>{
@@ -52,14 +72,13 @@ export class MyprofileComponent {
   }
   D(){
     this.pflag='myorder';
+    this.getMyOrders()
   }
   E(){
-    // this.router.navigateByUrl('wishlist')
     this.pflag='wishlist';
   }
   F(){
-    this.pflag='cart'
-    // this.router.navigateByUrl('cart')
+    this.pflag='cart';
   }
   G(){
     localStorage.removeItem('username');
@@ -71,12 +90,12 @@ export class MyprofileComponent {
   H(){
     this.pflag = 'manageaccount'
   }
-  AddAddress(){
+  I(){
+    this.pflag = 'checkoutnext'
+  }
+  AddAddressActive(){
     this.address=true;
   }
-ngOnInit():void{
-
-}
 DeleteAccount(){
   var c = confirm('Are You Sure?');
   if(c==true){
@@ -97,8 +116,8 @@ DeleteAccount(){
 updatePassword(){
 
 
-    var currentpasssword = this.updatepassword.value.currentpassword;
-    console.log(currentpasssword);
+    var currentpassword = this.updatepassword.value.currentpassword;
+    console.log(currentpassword);
     
     var newpass = this.updatepassword.value.newpass;
     console.log(newpass);
@@ -107,19 +126,91 @@ updatePassword(){
     console.log(repeatnewpass);
     
     if(newpass===repeatnewpass){
-      this.ds.UpdatePassword(currentpasssword,newpass).subscribe(
+      this.ds.UpdatePassword(currentpassword,newpass).subscribe(
         (result:any)=>{
           alert(result.message);
+          this.ds.Logout()
         },
         (result:any)=>{
-          result.error.message
+          alert(result.error.message)
         }
       )
     }
-
+    else{
+      alert("New Password Didn't math");
+    }
 
 }
-order(){
-    
+AddAddress(){
+
+  if(this.addaddressform.valid){
+    var houseno = this.addaddressform.value.houseno;
+    var postoffice = this.addaddressform.value.postoffice;
+    var place = this.addaddressform.value.place;
+    var pin = this.addaddressform.value.pin;
+    var district = this.addaddressform.value.district;
+    var state = this.addaddressform.value.state;
+    var country = this.addaddressform.value.country;
+    this.ds.AddAddress(houseno,postoffice,place,pin,district,state,country).subscribe(
+      (result:any)=>{
+        this.getAddress();
+        alert(result.message);
+                                                                        
+      },
+      (result:any)=>{
+        alert(result.error.message);
+      }
+    )
+  }
+
+}
+getAddress(){
+  this.ds.getAddress().subscribe(
+    (result:any)=>{
+      this.myAddress = result.address;
+      console.log(this.myAddress);
+      
+    }),
+    (result:any)=>{
+      alert(result.error.message)
+    }
+}
+// deliveryAddress=this.fb.group({
+//   name:['',[Validators.required]],
+//   houseno:['',[Validators.required]],
+//   pin:['',[Validators.required]],
+//   place:['',[Validators.required]],
+//   district:['',[Validators.required]],
+//   state:['',[Validators.required]],
+//   country:['',[Validators.required]],
+//   email:['',[Validators.required]],
+//   num:['',[Validators.required]]
+// })
+Order(){
+    // this.pflag='orderisplaced';
+    this.ds.placeOrder().subscribe(
+      (result:any)=>{
+        alert(result.message);
+      },
+      (result:any)=>{
+        alert(result.error.message);
+      }
+    )
+
+}
+getMyOrders(){
+  
+  this.ds.getMyOrders().subscribe(
+    (result:any)=>{
+      this.MyOrders = result.products
+      console.log(this.MyOrders);
+      if(result.length!=0){this.emsg=true;}else{this.emsg=false}
+
+    },
+    (result:any)=>{
+      alert(result.error.message)
+    }
+  )
+ 
 }
 }

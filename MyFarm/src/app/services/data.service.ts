@@ -200,12 +200,46 @@ export class DataService {
   })
   return grandsum;
 }
-UpdatePassword(currentpasssword:any,newpass:any){
+UpdatePassword(currentpassword:any,newpass:any){
   var data={
     uid:this.currentuid,
-    currentpasssword,
-    newpass
+    currentpassword:currentpassword,
+    newpass:newpass
   }
-  return this.http.post('http://localhost:3000/updatepassword',data);
+  return this.http.post('http://localhost:3000/up',data);
 }
+AddAddress(houseno:any,postoffice:any,place:any,pin:any,district:any,state:any,country:any){
+
+  var data={
+    uid:this.currentuid,
+    houseno,
+    postoffice,
+    place,
+    pin,
+    district,
+    state,
+    country
+  }
+  return this.http.post('http://localhost:3000/addaddress',data);
+}
+getAddress(){
+  var data={
+    uid:this.currentuid
+  } 
+
+  return this.http.post('http://localhost:3000/getaddress',data)
+}
+
+  placeOrder(){
+    var data={
+      uid:this.currentuid
+    } 
+    return this.http.post('http://localhost:3000/placeorder',data)
+  }
+  getMyOrders(){
+    var data ={
+      uid:this.currentuid
+    }
+    return this.http.post('http://localhost:3000/getmyorders',data)
+  }
 }

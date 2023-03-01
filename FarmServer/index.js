@@ -135,12 +135,37 @@ app.post('/search',(req,res)=>{
         res.status(result.statusCode).json(result)
     })
 })
-app.post('/updatepassword',(req,res)=>{
-    dataService.updatepassword(
+app.post('/up',(req,res)=>{
+    dataService.UpdatePassword(req.body.uid,req.body.currentpassword,req.body.newpass).then(result=>{
+        res.status(result.statusCode).json(result)
+    }) 
+})
+app.post('/addaddress',(req,res)=>{
+    dataService.AddAddress(
         req.body.uid,
-        req.body.currentpassword,
-        req.body.newpass).then(result=>{
+        req.body.houseno,
+        req.body.postoffice,
+        req.body.place,
+        req.body.pin,
+        req.body.district,
+        req.body.state,
+        req.body.country
+    ).then(result=>{
         res.status(result.statusCode).json(result)
     })
-   
+})
+app.post('/getaddress',(req,res)=>{
+    dataService.getAddress(req.body.uid).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+})
+app.post('/placeorder',(req,res)=>{
+    dataService.placeOrder(req.body.uid).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+})
+app.post('/getmyorders',(req,res)=>{
+    dataService.getmyorders(req.body.uid).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
 })

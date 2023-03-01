@@ -1,6 +1,6 @@
 
 <!-- ---empty cart--- -->
-<div *ngIf="msg==true" class="cla" >
+<div *ngIf="msg==false" class="cla" >
     <div class="container" >
         <div class="row">
             <div class="col text-center">
@@ -16,10 +16,10 @@
 
 
 <!-- cart with content -->
-<div *ngIf="msg!=true" class="container text-center">
+<div *ngIf="msg==false" class="container text-center">
     <div class="row">
         <div *ngFor="let product of cart" class="col pe-2 d-flex ">
-            <table class="table border border-dark m-4">
+            <table style="border: 1px solid lightblue;" class="table border m-4">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -42,37 +42,13 @@
                 </tbody>
             </table>
           </div>
-            <div style="float: right;">
+            <div style="float: right;" class="m-4">
+              <h3 class="m-3"><b>Grand Total : Rs.{{total}}/- </b></h3>
+
                 <a routerLink="/home" class="btn btn-warning">View More</a> &nbsp; 
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Check out</button> &nbsp;
-                <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Check Out Page</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h2>Delivery Address</h2>
-          <form action="" class="form-control">
-            <input type="text" placeholder="Name">
-            <input type="text" placeholder="Address/House No.">
-            <input type="text" placeholder="pincode">
-            <input type="text" placeholder="State">
-            <input type="text" placeholder="Country">
-            <input type="text" placeholder="E-mail">
-            <input type="text" placeholder="Contact Number">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" (click)="order()" class="btn btn-primary">Order</button>
-        </div>
-      </div>
-    </div>
-  </div>
-                <div class="mt-3"><h3><b>Grand Total : Rs.{{total}}/- </b></h3></div>
+                <button type="button" (click)="Checkout()" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Place Order</button> &nbsp;
+                
+
             </div>
         
     </div>
