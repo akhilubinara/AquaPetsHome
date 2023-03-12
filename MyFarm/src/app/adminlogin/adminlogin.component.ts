@@ -28,7 +28,7 @@ export class AdminloginComponent {
           this.ds.currentusername = 'Admin'
           this.ds.setUsername();
           // localStorage.setItem('username',JSON.stringify(this.ds.currentusername));
-          this.router.navigateByUrl('add-details')
+          this.router.navigateByUrl('/')
         }
         else{
           alert("Error")

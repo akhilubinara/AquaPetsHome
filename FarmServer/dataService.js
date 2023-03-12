@@ -478,6 +478,8 @@ const getAddress= async (uid)=>{
             }
         }
     };
+
+
    const placeOrder= async (uid)=>{
 
     try{
@@ -487,7 +489,8 @@ const getAddress= async (uid)=>{
             const data = {
                 uid:uid,
                 address:user.address,
-                products:user.cart 
+                products:user.cart,
+                status:false 
             }
             user.order.push(data)
             return user.save().then(()=>{
@@ -552,7 +555,13 @@ const getmyorders= async (uid)=>{
         }
     }
 }
-
+const print=()=>{
+    return{
+        status:true,
+        statusCode:200,
+        message:'hey'
+    }
+}
 
 module.exports={
     register,
@@ -574,5 +583,6 @@ module.exports={
     AddAddress,
     getAddress,
     placeOrder,
-    getmyorders
+    getmyorders,
+    print
 }

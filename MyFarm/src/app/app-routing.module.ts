@@ -3,6 +3,7 @@ import {  NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddDetailsComponent } from './adminlogin/add-details/add-details.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { ViewordersComponent } from './adminlogin/vieworders/vieworders.component';
 import { CartComponent } from './home/cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { WishlistComponent } from './home/wishlist/wishlist.component';
@@ -31,7 +32,7 @@ const routes: Routes = [
     path:'admin',component:AdminloginComponent
   },
   {
-    path:'add-details',component:AddDetailsComponent
+    path:'adminlogin/add-details',component:AddDetailsComponent
   },
   {
     path:'cart',component:CartComponent
@@ -50,6 +51,9 @@ const routes: Routes = [
   },
   {
     path:'videos', component:VideosComponent
+  },
+  {
+    path:'adminlogin/vieworders',component:ViewordersComponent
   },
   {
     path:'**',component:PageNotFoundComponent

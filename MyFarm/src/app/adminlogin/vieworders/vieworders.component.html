@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div *ngIf="msg==false"></div>
+
+<div *ngIf="msg==true" style="margin-top: 150px;">
+    <table style="border: 1px solid lightblue;" class="table border m-4">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Shipping Address</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="text-left">
+            <!-- <tr *ngFor="let product of cartitems" > -->
+                <tr>
+                <td>product.pname</td>
+                <td>product.price</td>
+                <td>Address</td>
+                <td><input type="text" value="Processing..."></td>
+                <td><button class="btn btn-warning">Change Status</button></td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>

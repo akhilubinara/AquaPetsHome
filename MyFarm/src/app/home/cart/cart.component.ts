@@ -24,6 +24,7 @@ export class CartComponent {
         this.cart = data.products
         this.ds.cartcount = this.cart.length
         console.log(this.cart[0].price);
+        this.msg = true;
         this.total = this.cart.reduce((acc:any, product:any) => acc + product.price, 0);
           localStorage.setItem('total',JSON.stringify(this.total));
           console.log('Total is :'+this.total);

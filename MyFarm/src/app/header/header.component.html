@@ -10,13 +10,21 @@
                 <li class="nav-item"><a style="color: aliceblue;" class="nav-link active" aria-current="page"href="https://www.youtube.com/channel/UC3aVchGfsvf_ves2FSUEFCA">&nbsp;&nbsp;Youtube</a></li>
                 <li class="nav-item"><a style="color: aliceblue;" class="nav-link" routerLink="/videos">Videos</a></li>
                 <li class="nav-item dropdown">
-                    <a style="color: aliceblue;" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <a *ngIf="username!='Admin'" style="color: aliceblue;" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="list">
                         <li><a class="dropdown-item" href="/home">All Products</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" (click)="getfishes()" href="">Fishes</a></li>
                         <li><a class="dropdown-item" href="#!">Plants</a></li>
                         <li><a class="dropdown-item" href="#!">Other Products</a></li>
+                    </ul>
+<!-- for admin and user -->
+                    <a *ngIf="username=='Admin'" style="color: aliceblue;" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="list">
+                        <li><a class="dropdown-item" routerLink="/adminlogin/add-details">Add Product</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" routerLink="/adminlogin/vieworders">Orders</a></li>
+                        <li><a class="dropdown-item" routerLink="/adminlogin/viewmessages">Messages</a></li>
                     </ul>
                 </li>
             </ul>
@@ -43,11 +51,15 @@
                     <button style="color: aliceblue;" class="btn me-3" (click)="login()"><i class="fa-sharp fa-solid fa-user"></i>&nbsp; {{username}}</button>
                 </div>
                 
-                <button style="color: aliceblue;" (click)="cart()" class="btn btn-outline-light" type="submit">
+                <button *ngIf="username!='Admin'" style="color: aliceblue;" (click)="cart()" class="btn btn-outline-light" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
                     <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">{{cartcount}}</span> -->
                 </button>
+                <a *ngIf="username=='Admin'" style="color: aliceblue;"  class="btn btn-outline-light" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Messages
+                </a>
             </form>
         </div>
     </div>

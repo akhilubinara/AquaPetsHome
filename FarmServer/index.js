@@ -169,3 +169,9 @@ app.post('/getmyorders',(req,res)=>{
         res.status(result.statusCode).json(result)
     })
 })
+
+app.get('/print',(req,res)=>{
+    dataService.print().then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+})

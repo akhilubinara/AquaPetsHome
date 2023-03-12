@@ -191,6 +191,7 @@ Order(){
     this.ds.placeOrder().subscribe(
       (result:any)=>{
         alert(result.message);
+        this.pflag='orderisplaced'
       },
       (result:any)=>{
         alert(result.error.message);

@@ -25,6 +25,7 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
 import { MyordersComponent } from './myorders/myorders.component';
 import { SlidderComponent } from './slidder/slidder.component';
 import { VideosComponent } from './videos/videos.component';
+import { ViewordersComponent } from './adminlogin/vieworders/vieworders.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { VideosComponent } from './videos/videos.component';
     MyordersComponent,
     SlidderComponent,
     VideosComponent,
+    ViewordersComponent,
     
   ],
   imports: [
